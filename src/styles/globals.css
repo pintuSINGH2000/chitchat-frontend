@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.growLogo{
+    animation-duration: 4s;
+    animation-name: grow;
+    position: relative;
+    margin: 10px;
+    animation-iteration-count: infinite;
+    animation-delay: 1s;
+    width: 400px;
+    height: 300px;
+}
+
+
+@keyframes grow{
+    from {
+        transform: rotate(0deg) scale(.25);
+      }
+      to {
+        transform: rotate(-20deg) scale(.60);
+      }
+}
