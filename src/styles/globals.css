@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .growLogo{
     animation-duration: 4s;
     animation-name: grow;
@@ -22,4 +21,14 @@
       to {
         transform: rotate(-20deg) scale(.60);
       }
+}
+
+
+.custom-scrollbar::-webkit-scrollbar{
+  height: 8px !important;
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb{
+  background-color: #ffffff3b;
 }
