@@ -4,9 +4,14 @@ export const initialState = {
   userInfo: undefined,
   newUser: false,
   contactsPage: false,
-  currentChatUser:undefined,
-  messages:[],
-  socket:undefined
+  currentChatUser: undefined,
+  messages: [],
+  socket: undefined,
+  messagesSearch: false,
+  userContacts: [],
+  onlineUsers: [],
+  filterdContacts: [],
+  contactSearch:[],
 };
 
 const reducer = (state, action) => {
@@ -26,27 +31,51 @@ const reducer = (state, action) => {
         ...state,
         contactsPage: !state.contactsPage,
       };
-      case reducerCases.CHANGE_CURRENT_CHAT_USER:
+    case reducerCases.CHANGE_CURRENT_CHAT_USER:
       return {
         ...state,
         currentChatUser: action.user,
       };
-      case reducerCases.SET_MESSAGES:
-        return {
-          ...state,
-          messages: action.messages,
-        };
-      case reducerCases.SET_SOCKET:
-        return {
-          ...state,
-          socket: action.socket,
-        };
-      case reducerCases.ADD_MESSAGE:
-        console.log("message",action.newMessage);
-        return {
-          ...state,
-          messages: [...state.messages,action.newMessage],
-        };
+    case reducerCases.SET_MESSAGES:
+      return {
+        ...state,
+        messages: action.messages,
+      };
+    case reducerCases.SET_SOCKET:
+      return {
+        ...state,
+        socket: action.socket,
+      };
+    case reducerCases.ADD_MESSAGE:
+      return {
+        ...state,
+        messages: [...state.messages, action.newMessage],
+      };
+    case reducerCases.SET_MESSAGE_SEARCH:
+      return {
+        ...state,
+        messagesSearch: !state.messagesSearch,
+      };
+    case reducerCases.SET_USER_CONTACTS:
+      return {
+        ...state,
+        userContacts: action.userContacts,
+      };
+    case reducerCases.SET_ONLINE_USERS:
+      return {
+        ...state,
+        onlineUsers: !action.onlineUsers,
+      };
+    case reducerCases.SET_CONTACT_SEARCH: {
+      const filteredContact = state.userContacts.filter((contact) =>
+        contact.name.toLowerCase().includes(action.contactSearch.toLowerCase())
+      );
+      return {
+        ...state,
+        contactSearch: action.contactSearch,
+        filterdContacts:filteredContact,
+      };
+    }
     default:
       return state;
   }
